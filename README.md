@@ -3,10 +3,6 @@
  
 
 ## AIM:
- 
-
- 
-
 To write a C program to implement the Playfair Substitution technique.
 
 ## DESCRIPTION:
@@ -34,10 +30,62 @@ STEP-5: Display the obtained cipher text.
 
 
 
-Program:
+## Program:
+```
+  #include <stdio.h>
+ #include <string.h>
+
+int main()
+ {
+    int key;
+    char s[1000];
+
+    printf("Enter a plaintext to encrypt:\n");
+    fgets(s, sizeof(s), stdin);
+    printf("Enter key:\n");
+    scanf("%d", &key);
+
+    int n = strlen(s);
+
+    for (int i = 0; i < n; i++) 
+    {
+        char c = s[i];
+        if (c >= 'a' && c <= 'z') 
+        {
+            s[i] = 'a' + (c - 'a' + key) % 26;
+        }
+        else if (c >= 'A' && c <= 'Z')
+        {
+            s[i] = 'A' + (c - 'A' + key) % 26;
+        }
+    }
+    printf("Encrypted message: %s\n", s);
+
+    for (int i = 0; i < n; i++)
+    {
+        char c = s[i];
+        if (c >= 'a' && c <= 'z') 
+        {
+            s[i] = 'a' + (c - 'a' - key + 26) % 26; 
+        }
+        else if (c >= 'A' && c <= 'Z')
+        {
+            s[i] = 'A' + (c - 'A' - key + 26) % 26; 
+        }
+    }
+    printf("Decrypted message: %s\n", s);
+
+    return 0;
+}
+
+```
 
 
 
 
+## Output:
+![image](https://github.com/user-attachments/assets/81487e56-7bf9-46bc-9c1a-7967386a5ec1)
 
-Output:
+## RESULT:
+The program is executed successfully
+
